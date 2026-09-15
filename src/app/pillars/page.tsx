@@ -124,7 +124,7 @@ export default function PillarsPage() {
                 </Button>
               </Link>
               <Link href="/get-involved?type=volunteer">
-                <Button variant="outline" className="w-full sm:w-auto rounded-full px-8 py-3 text-white border-white/20 hover:bg-white/10">
+                <Button variant="secondary" className="w-full sm:w-auto rounded-full px-8 py-3 text-white border-white/20 hover:bg-white/10">
                   Become a Volunteer
                 </Button>
               </Link>
