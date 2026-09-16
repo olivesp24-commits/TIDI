@@ -31,7 +31,7 @@ export function FounderSpotlight() {
                 At TIDI, we believe that true development is not something done <em>to</em> a community, but something built <em>with</em> them.
               </p>
               <p>
-                Our organization was founded on a simple premise: when you provide equitable access to education, health, and human services, individuals are empowered to break cycles of vulnerability and shape their own futures. We are not just giving aid; we are investing in human capital.
+                Our organization was founded on a simple promise: when you provide equitable access to education, health, and human services, individuals are empowered to break cycles of vulnerability and shape their own futures. We are not just giving aid; we are investing in human capital.
               </p>
               <p>
                 Through locally led solutions, we ensure that every initiative is culturally resonant and sustainable long after initial interventions have concluded.

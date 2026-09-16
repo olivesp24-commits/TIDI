@@ -55,7 +55,7 @@ export default function AboutPage() {
               Empowering the Vulnerable.
             </h1>
             <p className="reveal-item opacity-0 text-lg text-brand-navy/70 leading-relaxed">
-              The Total Impact Development Initiative (TIDI) is a non-governmental organization committed to eradicating poverty and creating equitable opportunities across marginalized communities in Nigeria.
+              Total Impact Development Initiative (TIDI) is a non-governmental organization committed to eradicating poverty and creating equitable opportunities across marginalized communities in Nigeria.
             </p>
           </div>
           <div className="reveal-item opacity-0 relative h-[500px] lg:h-[700px] w-full rounded-3xl overflow-hidden shadow-xl">

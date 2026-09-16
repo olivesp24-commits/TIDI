@@ -11,10 +11,19 @@ const teamMembers = [
     name: "Beatrice Adeh Thomas",
     role: "Founder / Head Admin",
     profession: "Diction Coach",
-    bio: "As the Founder and Head Admin, Beatrice leverages her expertise as a Diction Coach to drive TIDI's vision. She oversees organizational strategy and ensures impactful communication across all programs.",
+    bio: "As the Founder and Head Admin, Beatrice leverages her expertise as a public speaker and a crowned queen to drive TIDI's vision. She oversees organizational strategy and ensures impactful communication across all programs.",
     phone: "09151214069 / 07076071389",
     email: "thomasbeatrice024@gmail.com",
     image: "/asset/founder-image.png"
+  },
+  {
+    name: "Edeh Favour Ibeabuchi",
+    role: "Secretary",
+    profession: "Real Estate",
+    bio: "Favour anchors our administrative operations as Secretary, utilizing his background in Real Estate to bring strong project management and organizational skills to TIDI's daily activities.",
+    phone: "07033988545",
+    email: "Fedeh@gmail.com",
+    image: "/asset/secretary-image.png"
   },
   {
     name: "Emecheta Blessing O",
@@ -24,15 +33,6 @@ const teamMembers = [
     phone: "08063852745",
     email: "oluchiojiakor@gmail.com",
     image: "/asset/registered-nurse-image.png"
-  },
-  {
-    name: "Edeh Favour Ibeabuchi",
-    role: "Secretary",
-    profession: "Real Estate",
-    bio: "Favour anchors our administrative operations as Secretary, utilizing her background in Real Estate to bring strong project management and organizational skills to TIDI's daily activities.",
-    phone: "07033988545",
-    email: "Fedeh@gmail.com",
-    image: "/asset/secretary-image.png"
   },
   {
     name: "Femi Abdulsalam",
