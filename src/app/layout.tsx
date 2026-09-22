@@ -14,8 +14,24 @@ const manrope = Manrope({
 });
 
 export const metadata: Metadata = {
-  title: "TIDI - Total Impact Development Initiative",
-  description: "Igniting Hope, Shaping Futures.",
+  title: {
+    template: "%s | TIDI",
+    default: "TIDI - Total Impact Development Initiative",
+  },
+  description: "Igniting Hope, Shaping Futures. TIDI is a non-governmental organization committed to eradicating poverty and creating equitable opportunities across marginalized communities in Nigeria.",
+  openGraph: {
+    title: "TIDI - Total Impact Development Initiative",
+    description: "Igniting Hope, Shaping Futures. We deliver holistic, community-driven programs that improve access to quality education, essential health services, and comprehensive human support systems.",
+    url: "https://tidi.org.ng",
+    siteName: "TIDI",
+    locale: "en_NG",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "TIDI - Total Impact Development Initiative",
+    description: "Igniting Hope, Shaping Futures.",
+  },
 };
 
 import { Navbar } from "@/components/layout/Navbar";

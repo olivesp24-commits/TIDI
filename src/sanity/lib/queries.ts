@@ -59,6 +59,9 @@ export async function getTeamMembers() {
     _id,
     name,
     role,
+    profession,
+    phone,
+    email,
     "image": image.asset->url,
     bio
   }`;
@@ -67,6 +70,68 @@ export async function getTeamMembers() {
     return await client.fetch(query, {}, { next: { tags: ['teamMember'] } });
   } catch (error) {
     console.error('Failed to fetch team members:', error);
+    return [];
+  }
+}
+
+export async function getAboutPage() {
+  const query = `*[_type == "aboutPage"][0] {
+    heroHeadline,
+    heroSubheadline,
+    missionStatement,
+    visionStatement,
+    featuredSections[]{
+      tagline,
+      heading,
+      body,
+      cta${CTA_FIELDS}
+    },
+    seo${SEO_FIELDS}
+  }`;
+
+  try {
+    return await client.fetch(query, {}, { next: { tags: ['aboutPage'] } });
+  } catch (error) {
+    console.error('Failed to fetch about page:', error);
+    return null;
+  }
+}
+
+export async function getPillarsPage() {
+  const query = `*[_type == "pillarsPage"][0] {
+    heroHeadline,
+    heroSubheadline,
+    pillars[]{
+      tagline,
+      heading,
+      body,
+      cta${CTA_FIELDS}
+    },
+    seo${SEO_FIELDS}
+  }`;
+
+  try {
+    return await client.fetch(query, {}, { next: { tags: ['pillarsPage'] } });
+  } catch (error) {
+    console.error('Failed to fetch pillars page:', error);
+    return null;
+  }
+}
+
+export async function getUpdatePosts() {
+  const query = `*[_type == "updatePost" && !(_id in path("drafts.**"))] | order(publishedAt desc) {
+    _id,
+    title,
+    "slug": slug.current,
+    publishedAt,
+    "coverImage": coverImage.asset->url,
+    excerpt
+  }`;
+
+  try {
+    return await client.fetch(query, {}, { next: { tags: ['updatePost'] } });
+  } catch (error) {
+    console.error('Failed to fetch updates:', error);
     return [];
   }
 }

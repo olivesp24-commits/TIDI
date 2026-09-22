@@ -5,11 +5,16 @@ import { PillarSelector } from "@/features/home/components/PillarSelector";
 import { SecondaryCTA } from "@/features/home/components/SecondaryCTA";
 import { UpdatesSection } from "@/features/home/components/UpdatesSection";
 import { FounderSpotlight } from "@/features/home/components/FounderSpotlight";
+import { getHomePage } from "@/sanity/lib/queries";
 
-export default function Home() {
+export const revalidate = 60; // revalidate every 60 seconds
+
+export default async function Home() {
+  const sanityData = await getHomePage();
+
   return (
     <div className="flex flex-col min-h-screen">
-      <Hero />
+      <Hero sanityData={sanityData} />
       <IntroSection />
       <ApproachStatsBand />
       <PillarSelector />

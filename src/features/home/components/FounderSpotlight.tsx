@@ -19,6 +19,7 @@ export function FounderSpotlight() {
               alt="Beatrice Adeh Thomas, Founder of TIDI"
               fill
               className="object-cover object-top"
+              sizes="(max-width: 768px) 100vw, 33vw"
             />
           </div>
           

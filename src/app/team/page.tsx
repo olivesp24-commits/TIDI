@@ -1,12 +1,25 @@
 import Image from "next/image";
 import { Mail, Phone } from "lucide-react";
+import { getTeamMembers } from "@/sanity/lib/queries";
+
+export const revalidate = 60; // revalidate every 60 seconds
 
 export const metadata = {
   title: "Our Team | TIDI",
   description: "Meet the dedicated team behind the Total Impact Development Initiative.",
 };
 
-const teamMembers = [
+interface TeamMember {
+  name: string;
+  role: string;
+  profession: string;
+  bio: string;
+  phone: string;
+  email: string;
+  image: string;
+}
+
+const DEFAULT_TEAM_MEMBERS: TeamMember[] = [
   {
     name: "Beatrice Adeh Thomas",
     role: "Founder / Head Admin",
@@ -45,7 +58,14 @@ const teamMembers = [
   }
 ];
 
-export default function TeamPage() {
+export default async function TeamPage() {
+  const sanityTeamMembers = await getTeamMembers();
+  
+  // Defensive Fallback: If Sanity has team members, use them. Otherwise, use defaults.
+  const teamMembers = sanityTeamMembers && sanityTeamMembers.length > 0 
+    ? sanityTeamMembers 
+    : DEFAULT_TEAM_MEMBERS;
+
   return (
     <div className="bg-brand-offwhite min-h-screen pt-40 md:pt-48 pb-24">
       <div className="container mx-auto px-4 md:px-8 max-w-7xl">
@@ -60,7 +80,7 @@ export default function TeamPage() {
 
         {/* Team Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-          {teamMembers.map((member, index) => (
+          {teamMembers.map((member: TeamMember, index: number) => (
             <div key={index} className="bg-white rounded-3xl overflow-hidden shadow-sm border border-brand-lavender-tint/50 transition-transform hover:-translate-y-2 duration-300 flex flex-col">
               <div className="relative h-72 w-full bg-brand-lavender-tint/20 shrink-0">
                 <Image 

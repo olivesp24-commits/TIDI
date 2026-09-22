@@ -39,6 +39,7 @@ export function IntroSection() {
                   alt="TIDI outreach activities"
                   fill
                   className="object-cover"
+                  sizes="(max-width: 1024px) 50vw, 25vw"
                 />
               </div>
               <div className="reveal-item opacity-0 -translate-y-12 aspect-[3/4] rounded-2xl overflow-hidden relative shadow-xl border-4 border-white bg-brand-lavender-tint/20">
@@ -47,6 +48,7 @@ export function IntroSection() {
                   alt="TIDI community impact"
                   fill
                   className="object-cover"
+                  sizes="(max-width: 1024px) 50vw, 25vw"
                 />
               </div>
             </div>

@@ -18,6 +18,21 @@ export default defineType({
       validation: (Rule) => Rule.required(),
     }),
     defineField({
+      name: 'profession',
+      title: 'Profession (e.g., Registered Nurse)',
+      type: 'string',
+    }),
+    defineField({
+      name: 'phone',
+      title: 'Phone Number',
+      type: 'string',
+    }),
+    defineField({
+      name: 'email',
+      title: 'Email Address',
+      type: 'string',
+    }),
+    defineField({
       name: 'image',
       title: 'Profile Image',
       type: 'image',

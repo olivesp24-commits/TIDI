@@ -1,7 +1,7 @@
 import { defineConfig, buildLegacyTheme } from 'sanity';
 import { structureTool } from 'sanity/structure';
 import { visionTool } from '@sanity/vision';
-import { schemaTypes } from './sanity/schemaTypes';
+import { schemaTypes } from './src/sanity/schemaTypes';
 
 // Brand Theme matching TIDI colors (Navy and Lavender)
 const brandTheme = buildLegacyTheme({

@@ -13,16 +13,28 @@ const HERO_IMAGES = [
   "/asset/hero-2.jpg"
 ];
 
-export function Hero() {
+interface HeroProps {
+  sanityData?: {
+    heroHeadline?: string;
+    heroSubheadline?: string;
+    heroSlides?: Array<{ src: string; title: string }>;
+  } | null;
+}
+
+export function Hero({ sanityData }: HeroProps) {
   const container = useRef<HTMLElement>(null);
   const [currentIndex, setCurrentIndex] = useState(0);
 
+  const headline = sanityData?.heroHeadline || "Lighting the Way\nFor Communities\nThat Need it Most.";
+  const subheadline = sanityData?.heroSubheadline || "We deliver holistic, community-driven programs that improve access to quality education, essential health services, and comprehensive human support systems.";
+  const slides = sanityData?.heroSlides?.length ? sanityData.heroSlides.map(s => s.src) : HERO_IMAGES;
+
   useEffect(() => {
     const timer = setInterval(() => {
-      setCurrentIndex((prev) => (prev + 1) % HERO_IMAGES.length);
+      setCurrentIndex((prev) => (prev + 1) % slides.length);
     }, 5000);
     return () => clearInterval(timer);
-  }, []);
+  }, [slides.length]);
 
   useGSAP(() => {
     const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -51,11 +63,12 @@ export function Hero() {
             transition={{ duration: 0.8, ease: "easeInOut" }}
           >
             <Image 
-              src={HERO_IMAGES[currentIndex]}
+              src={slides[currentIndex]}
               alt="Hero background"
               fill
               className={`object-cover opacity-70 ${currentIndex === 0 ? "object-top" : "object-center"}`}
               priority
+              sizes="100vw"
             />
           </motion.div>
         </AnimatePresence>
@@ -65,11 +78,11 @@ export function Hero() {
       <div className="container mx-auto px-4 md:px-8 max-w-7xl relative z-20 pt-40 pb-24 text-brand-offwhite">
         <div className="max-w-3xl flex flex-col gap-6 items-start">
           <span className="hero-reveal opacity-0 text-brand-lavender font-bold tracking-widest text-sm uppercase">Igniting Hope</span>
-          <h1 className="hero-reveal opacity-0 font-asul text-4xl sm:text-5xl md:text-7xl font-bold leading-tight text-white drop-shadow-md">
-            Lighting the Way<br/>For Communities<br/>That Need it Most.
+          <h1 className="hero-reveal opacity-0 font-asul text-4xl sm:text-5xl md:text-7xl font-bold leading-tight text-white drop-shadow-md whitespace-pre-line">
+            {headline}
           </h1>
           <p className="hero-reveal opacity-0 text-lg md:text-xl text-white/90 max-w-2xl leading-relaxed drop-shadow-sm">
-            We deliver holistic, community-driven programs that improve access to quality education, essential health services, and comprehensive human support systems.
+            {subheadline}
           </p>
           <div className="hero-reveal opacity-0 flex flex-wrap gap-4 mt-6">
             <Link href="/get-involved">

@@ -32,6 +32,7 @@ export function UpdatesSection() {
                   alt="Believing in Your Royalty and Future"
                   fill
                   className="object-cover object-[center_top] opacity-60 group-hover:opacity-40 transition-opacity duration-500 group-hover:scale-105"
+                  sizes="(max-width: 1024px) 100vw, 66vw"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-brand-navy via-brand-navy/60 to-transparent"></div>
               </div>

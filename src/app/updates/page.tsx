@@ -1,5 +1,8 @@
 import Image from "next/image";
 import { Calendar, MapPin, CheckCircle } from "lucide-react";
+import { getUpdatePosts } from "@/sanity/lib/queries";
+
+export const revalidate = 60;
 
 export const metadata = {
   title: "Updates & Impact | TIDI",
@@ -10,7 +13,12 @@ const galleryImages = Array.from({ length: 14 }, (_, i) =>
   `/asset/believing-in-your-royalty-and-future-image-${i + 1}.jpeg`
 );
 
-export default function UpdatesPage() {
+export default async function UpdatesPage() {
+  const sanityUpdates = await getUpdatePosts();
+  
+  // Defensive Fallback: If no Sanity data, we show the hardcoded fallback UI.
+  const hasUpdates = sanityUpdates && sanityUpdates.length > 0;
+
   return (
     <div className="bg-brand-offwhite min-h-screen pt-40 md:pt-48 pb-24">
       <div className="container mx-auto px-4 md:px-8 max-w-5xl">
@@ -23,7 +31,40 @@ export default function UpdatesPage() {
           </p>
         </div>
 
-        {/* EDITION 1 */}
+        {hasUpdates ? (
+          <div>
+            {sanityUpdates.map((update: any, index: number) => (
+              <article key={update._id || index} className="bg-white rounded-3xl shadow-sm border border-brand-lavender-tint/50 overflow-hidden mb-12">
+                {update.coverImage && (
+                  <div className="relative h-72 md:h-[400px] w-full bg-brand-lavender-tint/30">
+                    <Image 
+                      src={update.coverImage} 
+                      alt={update.title} 
+                      fill 
+                      className="object-cover object-[center_top]"
+                    />
+                  </div>
+                )}
+                <div className="p-8 md:p-12">
+                  <h2 className="font-asul text-3xl md:text-4xl font-bold text-brand-navy mb-6 leading-tight">
+                    {update.title}
+                  </h2>
+                  <div className="flex flex-wrap gap-4 mb-8 text-sm font-semibold text-brand-navy/60">
+                    <div className="flex items-center gap-2">
+                      <Calendar className="w-4 h-4 text-brand-lavender" />
+                      <span>{new Date(update.publishedAt).toLocaleDateString()}</span>
+                    </div>
+                  </div>
+                  <div className="prose prose-lg text-brand-navy/80 max-w-none space-y-6">
+                    <p className="whitespace-pre-line">{update.excerpt}</p>
+                  </div>
+                </div>
+              </article>
+            ))}
+          </div>
+        ) : (
+          <>
+            {/* EDITION 1 (FALLBACK) */}
         <div className="mb-6 flex items-center justify-between">
           <h2 className="font-asul text-3xl font-bold text-brand-navy">Outreach Edition 1</h2>
           <span className="flex items-center gap-1.5 text-sm font-bold text-green-700 bg-green-100 px-3 py-1 rounded-full">
@@ -94,6 +135,8 @@ export default function UpdatesPage() {
             
           </div>
         </article>
+        </>
+        )}
 
         {/* UPCOMING EDITIONS */}
         <div className="mt-12">
