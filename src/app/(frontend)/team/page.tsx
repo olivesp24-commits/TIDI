@@ -61,10 +61,11 @@ const DEFAULT_TEAM_MEMBERS: TeamMember[] = [
 export default async function TeamPage() {
   const sanityTeamMembers = await getTeamMembers();
   
-  // Defensive Fallback: If Sanity has team members, use them. Otherwise, use defaults.
-  const teamMembers = sanityTeamMembers && sanityTeamMembers.length > 0 
-    ? sanityTeamMembers 
-    : DEFAULT_TEAM_MEMBERS;
+  // Merge Sanity data with defaults, keeping defaults that haven't been added to Sanity yet
+  const sanityNames = new Set((sanityTeamMembers || []).map((m: any) => m.name.toLowerCase().trim()));
+  const missingDefaults = DEFAULT_TEAM_MEMBERS.filter((m: TeamMember) => !sanityNames.has(m.name.toLowerCase().trim()));
+  
+  const teamMembers = [...(sanityTeamMembers || []), ...missingDefaults];
 
   return (
     <div className="bg-brand-offwhite min-h-screen pt-40 md:pt-48 pb-24">
