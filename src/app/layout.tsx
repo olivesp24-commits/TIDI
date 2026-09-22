@@ -34,9 +34,7 @@ export const metadata: Metadata = {
   },
 };
 
-import { Navbar } from "@/components/layout/Navbar";
-import { Footer } from "@/components/layout/Footer";
-import { SmoothScrolling } from "@/animations/SmoothScrolling";
+import { ConditionalLayout } from "@/components/layout/ConditionalLayout";
 
 export default function RootLayout({
   children,
@@ -46,13 +44,9 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${asul.variable} ${manrope.variable} font-sans antialiased`}>
       <body className="min-h-screen flex flex-col bg-brand-offwhite text-brand-navy">
-        <SmoothScrolling>
-          <Navbar />
-          <main className="flex-1">
-            {children}
-          </main>
-          <Footer />
-        </SmoothScrolling>
+        <ConditionalLayout>
+          {children}
+        </ConditionalLayout>
       </body>
     </html>
   );
